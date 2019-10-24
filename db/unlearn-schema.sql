@@ -1,0 +1,65 @@
+DROP DATABASE IF EXISTS Unlearn;
+CREATE DATABASE Unlearn;
+USE Unlearn;
+
+CREATE TABLE User (
+userId INTEGER UNSIGNED NOT NULL,
+fullName VARCHAR(150) NOT NULL,
+userName VARCHAR(50) NOT NULL,
+hashedPassword VARCHAR(150) NOT NULL,
+email VARCHAR(100) NOT NULL,
+dob DATE,
+address VARCHAR(150),
+userType VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE Booking (
+bookingId INTEGER UNSIGNED NOT NULL,
+userId_fk INTEGER,
+classId_fk INTEGER,
+numGuests INTEGER
+);
+
+CREATE TABLE Payment (
+paymentId INTEGER UNSIGNED NOT NULL,
+bookingId_fk INTEGER UNSIGNED NOT NULL,
+amount FLOAT,
+paymentDate DATE,
+paymentTime TIME
+);
+
+CREATE TABLE Rating (
+ratingId INTEGER UNSIGNED NOT NULL,
+userId_fk INTEGER UNSIGNED NOT NULL,
+classId_fk INTEGER UNSIGNED NOT NULL,
+userLike BOOL,
+userDislike BOOL
+);
+
+CREATE TABLE Workshop (
+classId INTEGER UNSIGNED NOT NULL,
+businessId_fk INTEGER UNSIGNED NOT NULL,
+className VARCHAR(255) NOT NULL,
+description TEXT NOT NULL,
+location VARCHAR(150) NOT NULL,
+media TEXT,
+capacity INTEGER NOT NULL,
+category VARCHAR(150),
+price DECIMAL NOT NULL,
+totalLikes INTEGER,
+totalDislikes INTEGER
+);
+
+CREATE TABLE Business (
+businessId INTEGER UNSIGNED NOT NULL,
+businessName VARCHAR(255) NOT NULL,
+description TEXT NOT NULL
+);
+
+CREATE TABLE Timetable (
+timetableId INTEGER UNSIGNED NOT NULL,
+classId_fk INTEGER UNSIGNED NOT NULL,
+date DATE NOT NULL,
+startTime TIME NOT NULL,
+endTime TIME
+);
